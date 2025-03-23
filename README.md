@@ -1,8 +1,8 @@
-- 👋 Hi, I’m @supastishn, and a proud muslim
-- 👀 I’m interested in Game Development, Web Development, App Development, Electronics (e.g with Arduino, ESP, or Raspberry Pi)
-- 🌱 I’m currently learning Godot
-- 💞️ I’m looking to collaborate on nothing right now
-- 📫 How to reach me: My discord is @supastishn1
+- 👋 Hi, I’m @supastishn
+- 👀 I’m interested in Game Development, Web Development, App Development, and Electronics (e.g with Arduino, ESP, or Raspberry Pi)
+- 🌱 I’m currently learning Godot and React + React Native
+- 💞️ I’m willing to collaborate on some projects. I don't have a list, however
+- 📫 How to reach me: My discord is @supastishn
 - ⚡ Fun fact: I'm a proud muslim
 
 <!---
