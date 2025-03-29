@@ -17,7 +17,7 @@ header, main, footer {
 header {
     position: relative; /* Ensure it stacks above the canvas */
     z-index: 2;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.9); /* Dark grey, slightly transparent */
     color: #fff;
     text-align: center;
     padding: 2rem;
@@ -44,7 +44,7 @@ main { /* Ensure main content area is also positioned */
     z-index: 1;
 }
 section {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9); /* White, slightly transparent */
     margin-bottom: 2rem;
     padding: 1.5rem;
     border-radius: 8px;
@@ -69,7 +69,7 @@ section h2 {
     border: 1px solid #ddd;
     padding: 1rem;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: rgba(249, 249, 249, 0.9); /* Light grey, slightly transparent */
 }
 
 .project-item h3, .blog-post-item h3 {
@@ -84,7 +84,7 @@ footer {
     text-align: center;
     margin-top: 2rem;
     padding: 1rem;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.9); /* Dark grey, slightly transparent */
     color: #aaa;
 }
 ```
