@@ -45,7 +45,8 @@ function initThreeJS() {
     camera.position.z = 5; // Move camera back
 
     // Renderer
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    // Add alpha: true if you want transparency to CSS background
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.setSize(window.innerWidth, window.innerHeight); // Use window size
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
