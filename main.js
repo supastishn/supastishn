@@ -33,7 +33,8 @@ function initThreeJS() {
 
     // Scene
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x222222); // Match CSS background
+    // Set to null for transparent background, or keep a color
+    scene.background = new THREE.Color(0x11111f); // Dark blueish background example
 
     // Camera
     const fov = 75;

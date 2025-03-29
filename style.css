@@ -3,8 +3,9 @@ body {
     margin: 0;
     font-family: sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; Remove body background to see canvas */
     color: #333;
+    position: relative; /* Needed for z-index stacking context */
 }
 
 header, main, footer {
@@ -14,6 +15,8 @@ header, main, footer {
 }
 
 header {
+    position: relative; /* Ensure it stacks above the canvas */
+    z-index: 2;
     background-color: #333;
     color: #fff;
     text-align: center;
@@ -26,15 +29,20 @@ header h1 {
 
 /* Three.js Canvas Container */
 #threejs-container {
-    width: 100%;
-    height: 400px; /* Adjust height as needed */
-    background-color: #222; /* Placeholder background */
-    margin-bottom: 2rem;
-    position: relative; /* Needed if you add UI elements on top */
+    position: fixed; /* Position it relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Cover full viewport width */
+    height: 100vh; /* Cover full viewport height */
     overflow: hidden; /* Prevent scrollbars if canvas is slightly off */
+    z-index: -1; /* Place it behind all other content */
 }
 
 /* Sections */
+main { /* Ensure main content area is also positioned */
+    position: relative;
+    z-index: 1;
+}
 section {
     background-color: #fff;
     margin-bottom: 2rem;
@@ -71,6 +79,8 @@ section h2 {
 
 /* Footer */
 footer {
+    position: relative; /* Ensure it stacks above the canvas */
+    z-index: 2;
     text-align: center;
     margin-top: 2rem;
     padding: 1rem;
