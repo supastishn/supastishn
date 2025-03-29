@@ -188,18 +188,19 @@ function displayProjects(projects) {
         const header = document.createElement('h3');
         header.textContent = project.title || 'Untitled Project';
 
-        const details = document.createElement('div');
-        details.classList.add('project-details'); // Class to control visibility
-        details.innerHTML = `
+        // Create a container for everything that collapses
+        const collapsibleContainer = document.createElement('div');
+        collapsibleContainer.classList.add('collapsible-container');
+        collapsibleContainer.innerHTML = `
             <p>${project.description || 'No description available.'}</p>
             ${project.url ? `<a href="${project.url}" target="_blank" rel="noopener noreferrer">View Project</a>` : ''}
             ${project.repoUrl ? `<br><a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer">View Repository</a>` : ''}
             <!-- Add more fields like technologies used, image, etc. -->
         `;
 
-        // Append header and details to the item
+        // Append header and the collapsible container to the item
         item.appendChild(header);
-        item.appendChild(details);
+        item.appendChild(collapsibleContainer);
 
         // Add click listener to the item (or header) to toggle expansion
         item.addEventListener('click', () => {
@@ -225,22 +226,30 @@ function displayBlogPosts(posts) {
         const header = document.createElement('h3');
         header.textContent = post.title || 'Untitled Post';
 
+        // Create a container for everything that collapses
+        const collapsibleContainer = document.createElement('div');
+        collapsibleContainer.classList.add('collapsible-container');
+
+        // Create and add date paragraph to the container
         const datePara = document.createElement('p');
         datePara.innerHTML = `<em>Published: ${new Date(post.$createdAt).toLocaleDateString()}</em>`;
+        collapsibleContainer.appendChild(datePara);
 
-        const content = document.createElement('div');
-        content.classList.add('blog-content'); // Class to control visibility
-         // --- Customize based on your Appwrite collection attributes ---
-        content.innerHTML = `
-            <p>${post.summary || post.content?.substring(0, 150) + '...' || 'No content preview.'}</p>
-            <!-- Add a link to a full blog post page if you create one -->
-            <!-- <a href="/blog/${post.$id}">Read More</a> -->
-        `;
+        // Create and add content paragraph to the container
+        const contentPara = document.createElement('p');
+        contentPara.innerHTML = `${post.summary || post.content?.substring(0, 150) + '...' || 'No content preview.'}`;
+        collapsibleContainer.appendChild(contentPara);
 
-        // Append elements to the item
+        // Optional: Add 'Read More' link to the container if needed
+        // const readMoreLink = document.createElement('a');
+        // readMoreLink.href = `/blog/${post.$id}`; // Example link
+        // readMoreLink.textContent = 'Read More';
+        // collapsibleContainer.appendChild(readMoreLink);
+
+        // Append header and the collapsible container to the item
         item.appendChild(header);
-        item.appendChild(datePara);
-        item.appendChild(content);
+        item.appendChild(collapsibleContainer);
+
 
         // Add click listener to the item (or header) to toggle expansion
         item.addEventListener('click', () => {
