@@ -17,7 +17,7 @@ header, main, footer {
 header {
     position: relative; /* Ensure it stacks above the canvas */
     z-index: 2;
-    background-color: rgba(51, 51, 51, 0.9); /* Dark grey, slightly transparent */
+    background-color: rgba(51, 51, 51, 0.7); /* Dark grey, slightly transparent */
     color: #fff;
     text-align: center;
     padding: 2rem;
@@ -44,7 +44,7 @@ main { /* Ensure main content area is also positioned */
     z-index: 1;
 }
 section {
-    background-color: rgba(255, 255, 255, 0.9); /* White, slightly transparent */
+    background-color: rgba(255, 255, 255, 0.7); /* White, slightly transparent */
     margin-bottom: 2rem;
     padding: 1.5rem;
     border-radius: 8px;
