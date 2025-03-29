@@ -184,22 +184,28 @@ function displayProjects(projects) {
     projects.forEach(project => {
         const item = document.createElement('div');
         item.classList.add('project-item');
-        // --- Customize based on your Appwrite collection attributes ---
-        item.innerHTML = `
-            <h3>${project.title || 'Untitled Project'}</h3>
+        // --- Create header and details container ---
+        const header = document.createElement('h3');
+        header.textContent = project.title || 'Untitled Project';
+
+        const details = document.createElement('div');
+        details.classList.add('project-details'); // Class to control visibility
+        details.innerHTML = `
             <p>${project.description || 'No description available.'}</p>
             ${project.url ? `<a href="${project.url}" target="_blank" rel="noopener noreferrer">View Project</a>` : ''}
             ${project.repoUrl ? `<br><a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer">View Repository</a>` : ''}
             <!-- Add more fields like technologies used, image, etc. -->
         `;
-        // Example: Assuming you have an 'imageUrl' attribute
-        // if (project.imageUrl) {
-        //     const img = document.createElement('img');
-        //     img.src = project.imageUrl; // Or construct URL using Appwrite storage if needed
-        //     img.alt = project.title || 'Project Image';
-        //     img.style.maxWidth = '100%'; // Basic image styling
-        //     item.prepend(img); // Add image at the beginning
-        // }
+
+        // Append header and details to the item
+        item.appendChild(header);
+        item.appendChild(details);
+
+        // Add click listener to the item (or header) to toggle expansion
+        item.addEventListener('click', () => {
+            item.classList.toggle('expanded');
+        });
+
         projectListDiv.appendChild(item);
     });
 }
@@ -215,14 +221,32 @@ function displayBlogPosts(posts) {
     posts.forEach(post => {
         const item = document.createElement('div');
         item.classList.add('blog-post-item');
+        // Create header, date, and content container
+        const header = document.createElement('h3');
+        header.textContent = post.title || 'Untitled Post';
+
+        const datePara = document.createElement('p');
+        datePara.innerHTML = `<em>Published: ${new Date(post.$createdAt).toLocaleDateString()}</em>`;
+
+        const content = document.createElement('div');
+        content.classList.add('blog-content'); // Class to control visibility
          // --- Customize based on your Appwrite collection attributes ---
-        item.innerHTML = `
-            <h3>${post.title || 'Untitled Post'}</h3>
-            <p><em>Published: ${new Date(post.$createdAt).toLocaleDateString()}</em></p>
-            <p>${post.summary || post.content.substring(0, 150) + '...' || 'No content preview.'}</p>
+        content.innerHTML = `
+            <p>${post.summary || post.content?.substring(0, 150) + '...' || 'No content preview.'}</p>
             <!-- Add a link to a full blog post page if you create one -->
             <!-- <a href="/blog/${post.$id}">Read More</a> -->
         `;
+
+        // Append elements to the item
+        item.appendChild(header);
+        item.appendChild(datePara);
+        item.appendChild(content);
+
+        // Add click listener to the item (or header) to toggle expansion
+        item.addEventListener('click', () => {
+            item.classList.toggle('expanded');
+        });
+
         blogPostListDiv.appendChild(item);
     });
 }

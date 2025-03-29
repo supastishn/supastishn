@@ -70,11 +70,54 @@ section h2 {
     padding: 1rem;
     border-radius: 5px;
     background-color: rgba(249, 249, 249, 0.9); /* Light grey, slightly transparent */
+    cursor: pointer; /* Indicate the whole item is clickable */
+    transition: background-color 0.2s ease; /* Smooth hover effect */
+}
+
+.project-item:hover, .blog-post-item:hover {
+    background-color: rgba(235, 235, 235, 0.95); /* Slightly darker on hover */
 }
 
 .project-item h3, .blog-post-item h3 {
     margin-top: 0;
+    margin-bottom: 0.5rem; /* Add some space below header */
     color: #0056b3;
+}
+
+.blog-post-item em {
+    font-size: 0.9em;
+    color: #555;
+    display: block; /* Make it block level */
+    margin-bottom: 0.5rem; /* Space below date */
+}
+
+/* Styles for the collapsible content */
+.project-details, .blog-content {
+    max-height: 0; /* Collapse by default */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; /* Smooth transition */
+    /* Add some top margin/padding when expanded if needed */
+}
+
+.project-item.expanded .project-details,
+.blog-post-item.expanded .blog-content {
+    max-height: 1000px; /* Set a max-height large enough for content */
+    /* Adjust as needed, can be smaller */
+    transition: max-height 0.5s ease-in; /* Smooth transition for expansion */
+}
+
+/* Optional: Add an indicator */
+.project-item h3::after,
+.blog-post-item h3::after {
+    content: ' [+]'; /* Simple text indicator */
+    font-size: 0.8em;
+    color: #666;
+    float: right; /* Position to the right */
+}
+
+.project-item.expanded h3::after,
+.blog-post-item.expanded h3::after {
+    content: ' [-]';
 }
 
 /* Footer */
