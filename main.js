@@ -2,25 +2,7 @@ import * as THREE from 'three'; // Import MathUtils as well
 // Optional: Import OrbitControls for camera interaction
 // import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-// --- Appwrite Setup ---
-// Make sure to replace with your actual Appwrite endpoint and project ID
-const APPWRITE_ENDPOINT = 'https://cloud.appwrite.io/v1'; // Or your self-hosted endpoint
-const APPWRITE_PROJECT_ID = 'supasite'; // Replace with your project ID
-const APPWRITE_DATABASE_ID = 'supabase'; // Replace with your database ID
-
-const PROJECTS_DATABASE_ID = APPWRITE_DATABASE_ID; // Use the common database ID
-const PROJECTS_COLLECTION_ID = 'projects'; // Replace with your collection ID
-const BLOG_DATABASE_ID = APPWRITE_DATABASE_ID; // Use the common database ID
-const BLOG_COLLECTION_ID = 'blogposts'; // Replace with your collection ID
-
-const { Client, Databases, ID, Query } = Appwrite; // Destructure from Appwrite SDK
-
-const client = new Client();
-client
-    .setEndpoint(APPWRITE_ENDPOINT)
-    .setProject(APPWRITE_PROJECT_ID);
-
-const databases = new Databases(client);
+// --- Hardcoded Data ---
 
 // --- Three.js Setup ---
 const container = document.getElementById('threejs-container');
@@ -137,40 +119,56 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-// --- Appwrite Data Fetching ---
+// --- Hardcoded Data Fetching ---
 
-async function fetchProjects() {
-    console.log("Fetching projects...");
+function fetchProjects() {
+    console.log("Loading hardcoded projects...");
     const projectListDiv = document.getElementById('project-list');
-    try {
-        const response = await databases.listDocuments(
-            PROJECTS_DATABASE_ID,
-            PROJECTS_COLLECTION_ID,
-            // Add queries here if needed, e.g., [Query.limit(10)]
-        );
-        console.log("Projects response:", response);
-        displayProjects(response.documents);
-    } catch (error) {
-        console.error("Failed to fetch projects:", error);
-        projectListDiv.innerHTML = '<p>Error loading projects.</p>';
-    }
+
+    // Define your hardcoded projects here
+    const hardcodedProjects = [
+        {
+            title: "My Awesome Project 1",
+            description: "This is the first project I made. It does cool things.",
+            url: "https://example.com/project1",
+            repoUrl: "https://github.com/yourusername/project1"
+            // Add other fields as needed, e.g., imageUrl: "path/to/image.jpg"
+        },
+        {
+            title: "Another Interesting Project",
+            description: "Built using technology X and Y. Focuses on Z.",
+            // url: null, // Example: No live URL
+            repoUrl: "https://github.com/yourusername/project2"
+        },
+        // Add more project objects here
+    ];
+
+    displayProjects(hardcodedProjects);
 }
 
-async function fetchBlogPosts() {
-    console.log("Fetching blog posts...");
+function fetchBlogPosts() {
+    console.log("Loading hardcoded blog posts...");
     const blogPostListDiv = document.getElementById('blog-post-list');
-    try {
-        const response = await databases.listDocuments(
-            BLOG_DATABASE_ID,
-            BLOG_COLLECTION_ID,
-             // Add queries here if needed, e.g., [Query.orderDesc('$createdAt'), Query.limit(5)]
-        );
-        console.log("Blog posts response:", response);
-        displayBlogPosts(response.documents);
-    } catch (error) {
-        console.error("Failed to fetch blog posts:", error);
-        blogPostListDiv.innerHTML = '<p>Error loading blog posts.</p>';
-    }
+
+    // Define your hardcoded blog posts here
+    const hardcodedBlogPosts = [
+        {
+            title: "First Blog Post Title",
+            $createdAt: "2023-10-26T10:00:00.000Z", // Use ISO 8601 format string for dates
+            summary: "This is a short summary of my first blog post...",
+            content: "This is the full content of the first blog post, which might be longer..." // You might use summary or content
+            // Add other fields as needed
+        },
+        {
+            title: "Thoughts on Web Development",
+            $createdAt: "2023-10-20T15:30:00.000Z",
+            summary: "Exploring recent trends in front-end development.",
+            content: "Detailed thoughts on frameworks, libraries, and the future."
+        },
+        // Add more blog post objects here
+    ];
+
+    displayBlogPosts(hardcodedBlogPosts);
 }
 
 // --- Display Functions ---
