@@ -5,8 +5,8 @@ import * as THREE from 'three'; // Import MathUtils as well
 // --- Appwrite Setup ---
 // Make sure to replace with your actual Appwrite endpoint and project ID
 const APPWRITE_ENDPOINT = 'https://cloud.appwrite.io/v1'; // Or your self-hosted endpoint
-const APPWRITE_PROJECT_ID = 'YOUR_PROJECT_ID'; // Replace with your project ID
-const PROJECTS_DATABASE_ID = 'YOUR_PROJECTS_DATABASE_ID'; // Replace with your database ID
+const APPWRITE_PROJECT_ID = 'supasite'; // Replace with your project ID
+const PROJECTS_DATABASE_ID = 'supabase'; // Replace with your database ID
 const PROJECTS_COLLECTION_ID = 'YOUR_PROJECTS_COLLECTION_ID'; // Replace with your collection ID
 const BLOG_DATABASE_ID = 'YOUR_BLOG_DATABASE_ID'; // Replace with your database ID (can be same as projects)
 const BLOG_COLLECTION_ID = 'YOUR_BLOG_COLLECTION_ID'; // Replace with your collection ID
