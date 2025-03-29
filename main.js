@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from 'three'; // Import MathUtils as well
 // Optional: Import OrbitControls for camera interaction
 // import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
@@ -23,7 +23,7 @@ const databases = new Databases(client);
 // --- Three.js Setup ---
 const container = document.getElementById('threejs-container');
 let scene, camera, renderer;
-let cube; // Example 3D object
+let shapeGroup; // Group to hold our pattern of shapes
 
 function initThreeJS() {
     if (!container) {
@@ -51,12 +51,45 @@ function initThreeJS() {
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
-    // Basic 3D Object (Example: Cube)
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 }); // Use MeshStandardMaterial for lighting
-    cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    // --- Create Shape Pattern ---
+    shapeGroup = new THREE.Group();
+    const numShapes = 200; // How many shapes to create
+    const shapeSize = 0.1; // Size of each individual shape
+    const spread = 10; // How far the shapes spread out
 
+    const geometry = new THREE.IcosahedronGeometry(shapeSize, 0); // Use Icosahedron (20 faces)
+    const baseMaterial = new THREE.MeshStandardMaterial({
+        color: 0xaaaaFF, // A light blueish color
+        roughness: 0.4,
+        metalness: 0.6
+    });
+
+    for (let i = 0; i < numShapes; i++) {
+        const material = baseMaterial.clone();
+        // Optional: Slightly vary color per shape
+        // material.color.offsetHSL( (Math.random() - 0.5) * 0.1, 0, 0 );
+
+        const shape = new THREE.Mesh(geometry, material);
+
+        // Random position within a cube volume
+        shape.position.set(
+            THREE.MathUtils.randFloatSpread(spread), // x: -spread/2 to +spread/2
+            THREE.MathUtils.randFloatSpread(spread), // y
+            THREE.MathUtils.randFloatSpread(spread)  // z
+        );
+        // Random rotation
+        shape.rotation.set(
+            Math.random() * Math.PI * 2,
+            Math.random() * Math.PI * 2,
+            Math.random() * Math.PI * 2
+        );
+        // Optional: Random scale
+        // const scale = THREE.MathUtils.randFloat(0.5, 1.5);
+        // shape.scale.set(scale, scale, scale);
+
+        shapeGroup.add(shape);
+    }
+    scene.add(shapeGroup);
     // Lighting (Essential for MeshStandardMaterial)
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
     scene.add(ambientLight);
@@ -90,10 +123,10 @@ function onWindowResize() {
 function animate() {
     requestAnimationFrame(animate);
 
-    // Example animation: Rotate the cube
-    if (cube) {
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+    // Rotate the entire group of shapes slowly
+    if (shapeGroup) {
+        shapeGroup.rotation.y += 0.0005; // Slow rotation on Y axis
+        shapeGroup.rotation.x += 0.0002; // Even slower rotation on X axis
     }
 
     // Required if controls.enableDamping is set to true
