@@ -45,7 +45,7 @@ function initThreeJS() {
 
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight); // Use window size
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
@@ -80,9 +80,9 @@ function initThreeJS() {
 
 function onWindowResize() {
     if (!container || !renderer || !camera) return;
-    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.aspect = window.innerWidth / window.innerHeight; // Use window size
     camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight); // Use window size
 }
 
 function animate() {
