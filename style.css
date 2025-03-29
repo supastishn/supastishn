@@ -1,0 +1,84 @@
+/* Basic Reset & Body Styling */
+body {
+    margin: 0;
+    font-family: sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header, main, footer {
+    padding: 1rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+/* Three.js Canvas Container */
+#threejs-container {
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
+    background-color: #222; /* Placeholder background */
+    margin-bottom: 2rem;
+    position: relative; /* Needed if you add UI elements on top */
+    overflow: hidden; /* Prevent scrollbars if canvas is slightly off */
+}
+
+/* Sections */
+section {
+    background-color: #fff;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Project & Blog List Styling */
+#project-list, #blog-post-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 1rem;
+}
+
+.project-item, .blog-post-item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.project-item h3, .blog-post-item h3 {
+    margin-top: 0;
+    color: #0056b3;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #333;
+    color: #aaa;
+}
+```
+
+main.js
+```javascript
+<<<<<<< SEARCH
